@@ -9,7 +9,9 @@ const input = document.querySelector("input")
 // const name = argument => {operations of the function}
 // assign constant with a callback, the operation of which is assigned to a constant
 const liMaker = inputText => {
-	const li = document.createElement("li") // create an li element
+	// 30/5/2019 - added comments and attempts to create a cancel button from a later file
+	const li = document.createElement("li") //create an li element
+	// const li = document.createElement(`${li} <a href="#">(x)</a>) // create an li element with a cancel button
 	li.textContent = inputText // assign the text input to the li element
 	ul.appendChild(li) // add the li element within the ul
 }

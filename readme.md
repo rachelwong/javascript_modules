@@ -15,15 +15,17 @@ Lectures were completed between the hours of 10am to 12pm every day for that per
 
 - not all challenges were attempted successfully. This represented a large majority of cases.
 - they are labeled `[day#]_afternoon.js`
+- other students' answers have been included and are labelled by their names
 
+## Units taught
 - Ruby vs JS
-- JS Objects
-- JS Classes
+- JS Objects (taught with Classes)
+- JS Classes (taught with Objects)
 - DOM & Web APIs
-- Callbacks
-- JSON
-- Cookies
-- Web Storage
-- jQuery
+- Callbacks (taught with JSON)
+- JSON (taught with Callbacks)
+- Cookies (taught with Web Storage)
+- Web Storage (taught with Cookies)
+- jQuery (Mentioned in a 15 minute lecture and not done in class)
 - Promises
 - AJAX

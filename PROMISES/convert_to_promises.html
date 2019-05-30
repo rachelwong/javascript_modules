@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8" />
+		<title>Callbacks & JSON</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<!-- Load Bulma CSS framework -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css"
+		/>
+	</head>
+	<body>
+		<!-- Header -->
+		<section class="hero is-primary">
+			<div class="hero-body">
+				<div class="container">
+					<h1 class="title">
+						Random
+					</h1>
+					<h2 class="subtitle">
+						Gettin' some randoms
+					</h2>
+					<a class="button is-primary is-inverted is-outlined" id="another-one">Another one!</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Our list of randoms -->
+		<section id="randoms"></section>
+
+		<script>
+			const randoms = document.querySelector("#randoms")
+			const anotherOneBtn = document.querySelector("#another-one")
+
+			// When they click the 'Another one!' button, run getRandomUser
+			anotherOneBtn.addEventListener("click", getRandomUser)
+
+			function createUser(jsonResults) {
+				// *** RACHEL CHANGES *** //
+				// .results is a propety in the jsonResults object
+				console.log(
+					`When it reaches createUser method, jsonResults is turned into an array using jsonResults.results, which turns into: ${typeof jsonResults.results}`
+				)
+				console.log(jsonResults.results)
+
+				// get the first lement of the jsonresults.results array to be the user
+				const user = jsonResults.results[0]
+
+				// *** END RACHEL CHANGES ***//
+
+				const html = `<div class="card">
+			    <div class="card-content">
+			      <div class="media">
+			        <div class="media-left">
+			          <figure class="image is-48x48">
+			            <img src="${user.picture.thumbnail}" alt="${user.name.first}">
+			          </figure>
+			        </div>
+			        <div class="media-content">
+			          <p class="title is-4">
+			            ${user.name.title} ${user.name.first} ${user.name.last}
+			          </p>
+			          <p class="subtitle is-6">${user.email}</p>
+			        </div>
+			      </div>
+			    </div>
+			  </div>`
+				randoms.innerHTML = html + randoms.innerHTML
+			}
+
+			function getRandomUser() {
+				// If the button is in a `disabled` state, we're waiting for a request to finish.
+				// Return so we don't send another request.
+				if (anotherOneBtn.hasAttribute("disabled")) {
+					return
+				}
+
+				// Update the button to give the user some feedback
+				anotherOneBtn.innerText = "Loading..."
+				anotherOneBtn.setAttribute("disabled", "")
+
+				//*** RACHEL CHANGES ***//
+				const jsonResults = fetch("https://randomuser.me/api/")
+					.then(res => res.json()) // when the constant assignment happens, json data may not available as it is a promise that is into the future. The res here is the response object that is JSON Parsed into another promise
+					.then(res => createUser(res)) //the .then unwraps the previous promise and the res argument is the data inside the promise. res is the json object, and no longer a promise object.
+				console.log(
+					`The jsonResults from the end of getRandomUser method is a ${typeof jsonResults}`
+				)
+				console.log(jsonResults)
+				// createUser(jsonResults)
+
+				//*** RACHEL CHANGES ***//
+
+				// const request = new XMLHttpRequest();
+				// request.open('GET', 'https://randomuser.me/api/', true);
+				// request.onload = function() {
+				// 	// Pass the response to createUser.
+				// 	createUser(request.response)
+
+				// Set the button back to a ready state
+				anotherOneBtn.innerText = "Another one!"
+				anotherOneBtn.removeAttribute("disabled")
+			}
+
+			// request.send()
+			// }
+
+			// **** RACHEL CHANGES ****//
+
+			// Promise.all is not really needed because there is only one API call and therefore only one promise returned. There are no additional Api calls and fetches to create additional promise objects.
+
+			// **** RACHEL CHANGES ****//
+		</script>
+	</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>CALLBACK : Traversy</h1>
+		<h4>
+			<a href="https://www.youtube.com/watch?v=PoRJizFvM7s">Explanation</a>
+		</h4>
+
+		<script type="text/javascript">
+			const posts = [
+				{ title: "Post One", body: "post one body" },
+				{ title: "Post TWo", body: "post two body" }
+			]
+
+			// setTimeOut
+			// simulating different server processing time by using setTiemout
+			// createPost takes 1 sec to load
+			// getPOsts takes 2 sec to load
+
+			function getPosts() {
+				// setTimetOUt(function, timeinmillisseconds)
+				setTimeout(() => {
+					let output = ""
+					//array.forEach((argumentItem, argumentIndex) => {funciont things})
+					// for each item in the posts array
+					posts.forEach((post, item) => {
+						// wrap the post title into a li and add it to ouput
+						output += `<li>${post.title}</li>`
+					})
+
+					// display the outpu onto the page
+					document.body.innerHTML = output
+				}, 1000)
+			}
+
+			// take in an additional function called 'callback'
+			// call 'callback' right after the push
+			function createPost(post, callback) {
+				setTimeout(() => {
+					// add whatever the input is to the posts array object
+					posts.push(post)
+					callback() // this is getPosts and the postThree is pushed onto posts again
+					// the callback is here because it takes longer to load than getPosts
+				}, 2000)
+			}
+
+			getPosts()
+			// creating an extra post
+			// without a callback function here, post three will not appear
+			createPost({ title: "Post Three", body: "This is post three" }, getPosts)
+		</script>
+	</body>
+</html>

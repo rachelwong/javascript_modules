@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!-- saved from url=(0138)https://a9870-21575.cluster41.canvas-user-content.com/courses/9870~162/files/9870~21575/course%20files/unit_cookies/language_selector.html -->
+<html lang="en" dir="ltr">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>Language Selector</title>
+		<style>
+			body {
+				text-align: center;
+				padding: 100px;
+			}
+
+			a {
+				cursor: pointer;
+			}
+
+			a:hover {
+				text-decoration: underline;
+			}
+
+			a.selected {
+				font-weight: bold;
+			}
+		</style>
+
+		<script
+			src="https://code.jquery.com/jquery-3.4.1.js"
+			integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+			crossorigin="anonymous"
+		></script>
+	</head>
+
+	<body>
+		<p>Select your language:</p>
+		<a id="english">English</a> | <a id="french">French</a> |
+		<a id="doggo">Doggo</a>
+		<script>
+			// Our event listener callback
+
+			// VERSION 2
+			var english = document.getElementById("english")
+			english.addEventListener("click", function() {
+				localStorage.setItem("Language", "English")
+				document.querySelector("a").classList.remove("selected")
+				english.classList.add("selected")
+				let lingo = localStorage.getItem("Language")
+				console.log(lingo)
+			})
+
+			var french = document.getElementById("french")
+			french.addEventListener("click", function() {
+				localStorage.setItem("Language", "French")
+				document.querySelector("a").classList.remove("selected")
+				english.classList.add("selected")
+				let lingo = localStorage.getItem("Language")
+				console.log(lingo)
+			})
+
+			var doggo = document.getElementById("doggo")
+			doggo.addEventListener("click", function() {
+				localStorage.setItem("Language", "doggo")
+				document.querySelector("a").classList.remove("selected")
+				doggo.classList.add("selected")
+				let lingo = localStorage.getItem("Language")
+				console.log(lingo)
+			})
+
+			//VERSION 3
+
+			// Turn a links into an array object
+			var links = Array.document.slice.call(document.getElementsByTagName("a"))
+			var language = event.target.id
+
+			for (var i = 0; i < links.length; i++) {
+				links[i].addEventListener("click", function() {
+					console.log(event.target.id)
+				})
+			}
+
+			// VERSION 1 - instructions
+			// set cookie
+			// Read a cookie if one is sets
+			// Select a cookie
+
+			// function setLocalStorage(currentlySelected) {
+			// 	// if currentlyselected element's id is english
+			// 	if ((currentlySelected.id = "english")) {
+			// 		//set localStorage key to be english
+			// 		localStorage.clear()
+			// 		localStorage.setItem("Language", "English")
+			// 	} else if ((currentlySelected = "french")) {
+			// 		//set localStorage key to be english
+			// 		localStorage.clear()
+			// 		localStorage.setItem("Language", "French")
+			// 	} else if ((currentlySelected.id = "doggo")) {
+			// 		//set localStorage key to be english
+			// 		localStorage.clear()
+			// 		localStorage.setItem("Language", "English")
+			// 	}
+			// }
+
+			// function setSessionStorage(currentlySelected) {
+			// 	// if currentlyselected element's id is english
+			// 	if ((currentlySelected.id = "english")) {
+			// 		//set localStorage key to be english
+			// 		sessionStorage.clear()
+			// 		sessionStorage.setItem("language", "English")
+			// 	} else if ((currentlySelected = "french")) {
+			// 		//set localStorage key to be english
+			// 		sessionStorage.clear()
+			// 		sessionStorage.setItem("language", "French")
+			// 	} else if ((currentlySelected.id = "doggo")) {
+			// 		//set localStorage key to be english
+			// 		sessionStorage.clear()
+			// 		sessionStorage.setItem("language", "English")
+			// 	}
+			// }
+			//
+			// 			const selectLanguage = event => {
+			// 				// If there's already a bold link, unbold it (remove the 'selected' class)
+			// 				const currentlySelected = document.querySelector("a.selected")
+			// 				if (currentlySelected) {
+			// 					currentlySelected.classList = "" // clears the selection so that only one element gets the selected class
+			// 				}
+			// 				// Add the 'selected' class to the link so it turns bold!
+			// 				event.target.classList = "selected"
+
+			// 				// setSessionStorage(currentlySelected)
+			// 				// setLocalStorage(currentlySelected)
+
+			// 			}
+
+			// 			// Find every language and add an 'on click' event listener
+			// 			const languages = document.querySelectorAll("a")
+			// 			languages.forEach(language => {
+			// 				// When a language is clicked, run the selectLanguage function
+			// 				language.addEventListener("click", selectLanguage)
+			// 			})
+		</script>
+	</body>
+</html>
