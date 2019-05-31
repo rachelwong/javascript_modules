@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Vue Demo</title>
+		<style>
+			.red {
+				color: red;
+			}
+			.green {
+				color: green;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<!-- This div is the container for the vue app. 
+        It has to attach to an HTML element. it will do all of its updating to the children  of that element. By convention it is called app -->
+
+			<!-- output -->
+			<h1 v-bind:title="title">{{ message }}</h1>
+			<p v-if="seen">Now you can see me</p>
+
+			<input v-model="message" />
+
+			<!-- onclick of this button, call the funciton reverseMessage -->
+			<button v-on:click="reverseMessage">Reverse Message</button>
+			<ol>
+				<li v-for="todo in todos">
+					<!-- if done = true, style in red -->
+					<span v-bind:class="todo.done ? 'red' : 'green'">{{ todo.text }}</span>
+				</li>
+			</ol>
+		</div>
+		<!-- This will call in the VUE framework. This is the simplest method -->
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+		<script src="script.js"></script>
+	</body>
+</html>
