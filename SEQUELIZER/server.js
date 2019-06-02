@@ -3,7 +3,7 @@ const express = require("express")
 // const studentRoutes = require("./routes/students")
 const Sequelize = require("sequelize")
 const bodyParser = require("body-parser")
-
+let sequelize = new Sequelize('postgres://postgres:postgres@localhost:5432/nodetest')
 // initialise a students array
 const students = ["Natasha", "Joe", "Matt", "Rachel", "Glen", "Dana"]
 
@@ -16,11 +16,11 @@ const port = 3000
 // sequelize won't create db automatically. manual process
 // create the database from pg admin. sequelize will look after the defintiion of the database
 // need to pass four things: name of database, username, password, {object containing configuration information}
-const sequelize = new Sequelize("nodetest", "postgres", "postgres", {
-	host: "localhost",
-	dialect: "postgres" // dialect specify what database system we are using (mysql, mariadb, msSQL, postgres, sqlite)
-	// port: 5432. This is not necessary if using the default setting port
-})
+// const sequelize = new Sequelize("nodetest", "postgres", "postgres", {
+// 	host: "localhost",
+// 	dialect: "postgres", // dialect specify what database system we are using (mysql, mariadb, msSQL, postgres, sqlite)
+// 	port: 5432 //. This is not necessary if using the default setting port
+// })
 
 // INITIALISE AN INSTANCE OF SEQUELIZER - VERSION 2
 // alternative version 2. database connection string
@@ -46,16 +46,16 @@ const Student = sequelize.define("student", {
 		type: Sequelize.STRING,
 		allowNull: false
 	},
-	dob: Sequelize.DATE,
+	dob: Sequelize.DATE
 })
 // sync the physical database iwht the defined model
-// essentially a db:migrate 
+// essentially a db:migrate
 sequelize.sync().then(() => {
-	console.log('Models synced!')
+	console.log("Models synced!")
 	//creates student object to insert into the student table
 	Student.create({
 		name: "Bob",
-		dob: "1986-10-24", //this is the acceptabel format for date 
+		dob: "1986-10-24" //this is the acceptabel format for date
 	})
 })
 
