@@ -5,6 +5,13 @@ const app = express()
 const port = 3000
 const router = require('./routes')
 
+
+// configure bodyParser
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({
+  extended: true
+}))
+
 app.use(router)
 
 // Configure MongoDB connection
@@ -23,8 +30,6 @@ MongoClient.connect(url, mongoOptions, (err, db) => {
   })
 })
 
-// configure bodyParser
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({
-  extended: true
-}))
+app.listen(3000, () => {
+  console.log("server is listening")
+})
