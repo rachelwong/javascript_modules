@@ -1,44 +1,43 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-	<head>
-		<meta charset="utf-8" />
-		<title>Callbacks & JSON</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css"
-		/>
-	</head>
-	<body>
-		<section class="hero is-primary">
-			<div class="hero-body">
-				<div class="container">
-					<h1 class="title">
-						Random
-					</h1>
-					<h2 class="subtitle">
-						Gettin' some randoms
-					</h2>
-					<a class="button is-primary is-inverted is-outlined" id="another-one">Another one!</a>
-				</div>
+<head>
+	<meta charset="utf-8" />
+	<title>Callbacks & JSON</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css" />
+</head>
+
+<body>
+	<section class="hero is-primary">
+		<div class="hero-body">
+			<div class="container">
+				<h1 class="title">
+					Random
+				</h1>
+				<h2 class="subtitle">
+					Gettin' some randoms
+				</h2>
+				<a class="button is-primary is-inverted is-outlined" id="another-one">Another one!</a>
 			</div>
-		</section>
+		</div>
+	</section>
 
-		<section id="randoms"></section>
+	<section id="randoms"></section>
 
-		<script>
-			const randoms = document.querySelector("#randoms")
-			const anotherOneBtn = document.querySelector("#another-one")
+	<script>
+		const randoms = document.querySelector("#randoms")
+		const anotherOneBtn = document.querySelector("#another-one")
 
-			anotherOneBtn.addEventListener("click", getRandomUser)
+		anotherOneBtn.addEventListener("click", getRandomUser)
 
-			function createUser(jsonResults) {
-				// jsonResults will deal with an object
-				const user = jsonResults.results[0]
-				console.log("user:", user)
+		function createUser(jsonResults) {
+			// jsonResults will deal with an object
+			const user = jsonResults.results[0]
+			console.log("user:", user)
 
-				const html = `<div class="card">
+			const html = `<div class="card">
 			    <div class="card-content">
 			      <div class="media">
 			        <div class="media-left">
@@ -55,47 +54,27 @@
 			      </div>
 			    </div>
 			  </div>`
-				randoms.innerHTML = html + randoms.innerHTML
+			randoms.innerHTML = html + randoms.innerHTML
+		}
+
+		// **** CHANGED THE FUNCTION TO USE ASYNC/AWAIT **** //
+		async function getRandomUser() {
+			if (anotherOneBtn.hasAttribute("disabled")) {
+				return
 			}
+			anotherOneBtn.innerText = "Loading..."
+			anotherOneBtn.setAttribute("disabled", "")
 
-			// **** CHANGE THE FUNCTION TO USE ASYNC/AWAIT **** //
-			async function getRandomUser() {
-				if (anotherOneBtn.hasAttribute("disabled")) {
-					return
-				}
-				anotherOneBtn.innerText = "Loading..."
-				anotherOneBtn.setAttribute("disabled", "")
+			let res = await fetch("https://randomuser.me/api/")
+			console.log("raw json res from fetch:", res)
+			// .text() wil return raw value
+			let json = await res.json() // .json() will parse the promise returned from the fetch
+			console.log("res.json:", json)
+			createUser(json) // createUser function needs to pass in the result of the parsed promise
+			anotherOneBtn.innerText = "Another one!"
+			anotherOneBtn.removeAttribute("disabled")
+		}
+	</script>
+</body>
 
-				let res = await fetch("https://randomuser.me/api/")
-				console.log("res:", res)
-				// .text() wil return raw value
-				let json = await res.json() // .json() will parse the promise returned from the fetch
-				console.log("json:", json)
-				createUser(json) // createUser needs to pass in the result of the parsed promise
-				anotherOneBtn.innerText = "Another one!"
-				anotherOneBtn.removeAttribute("disabled")
-			}
-
-			async function getCoin() {
-				// const request = new Request(
-				// 	"https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/listings/latest",
-				// 	{
-				// 		headers: new Headers({
-				// 			"X-CMC_PRO_API_KEY": "a88614e3-a0b9-410e-8526-031f568dea1b"
-				// 		})
-				// 	}
-				// )
-
-				let address = "Brisbane, AU" // Could get this from a form
-
-				let res = await fetch(
-					`http://open.mapquestapi.com/geocoding/v1/address?key=KEY&location=${address}`
-				)
-				let obj = await res.json()
-				console.log(obj)
-			}
-
-			getCoin()
-		</script>
-	</body>
 </html>

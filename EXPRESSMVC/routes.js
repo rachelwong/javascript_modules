@@ -3,7 +3,8 @@ const router = express.Router() // obtain an instance of the router module withi
 const {
   newContact,
   create,
-  index
+  index,
+  allEnquiries,
 } = require('./controllers/contact_controller') // this is following rails convention for class
 // can also be written as const ContactController = require(./controllers/contact_control)
 
@@ -17,5 +18,5 @@ router.get('/', newContact) // we don't want to call it immediately so we don't 
 
 router.post('/contacts', create)
 router.get('/contacts', index)
-
+router.get('/enquiries', allEnquiries)
 module.exports = router // exports router

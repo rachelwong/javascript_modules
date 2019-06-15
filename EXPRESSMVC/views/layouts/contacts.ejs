@@ -3,7 +3,6 @@
   <% for (contact of contacts) { %>
   <li><b><%= contact.name %></b> (<%= contact.email %>)</li>
   <% if (contact.enquiry) { %>
-  <li style="margin-left: 2rem;">Enquiry: <%= contact.enquiry %></li>
-  <% } %>
-  <% } %>
+  <li style="margin-left: 2rem;">Enquiry: <%= contact.enquiry %><button>Delete Enquiry</button></li>
+  <% } %> <% } %>
 </ul>

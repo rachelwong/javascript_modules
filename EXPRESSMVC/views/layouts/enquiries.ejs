@@ -1,0 +1,8 @@
+<h1>All Enquiries</h1>
+<ul>
+  <% for (contact of contacts) { %>
+  <% if (contact.enquiry) { %>
+  <p>Enquiry: <%= contact.enquiry %> <button onclick="">Delete Enquiry</button></p>
+  <% } %>
+  <% } %>
+</ul>

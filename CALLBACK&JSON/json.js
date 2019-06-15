@@ -38,7 +38,7 @@ console.log(person.name)
 console.log(person.age)
 console.log(person.hobbies)
 
-// TO DO THE REVERS: to convert object hierarchy object ot JSON string
+// TO DO THE REVERSE: to convert object hierarchy object ot JSON string
 let books = []
 books.push({
 	title: "IT",
@@ -60,7 +60,10 @@ console.log(`bookJSON is a type of ${typeof bookJSON}`)
 // if you have a JSON text file, it is human editable
 
 let londonWeather = {
-	coord: { lon: -122.09, lat: 37.39 },
+	coord: {
+		lon: -122.09,
+		lat: 37.39
+	},
 	sys: {
 		type: 3,
 		id: 168940,
@@ -69,11 +72,27 @@ let londonWeather = {
 		sunrise: 1427723751,
 		sunset: 1427768967
 	},
-	weather: [{ id: 800, main: "Clear", description: "Sky is Clear", icon: "01n" }],
+	weather: [{
+		id: 800,
+		main: "Clear",
+		description: "Sky is Clear",
+		icon: "01n"
+	}],
 	base: "stations",
-	main: { temp: 285.68, humidity: 74, pressure: 1016.8, temp_min: 284.82, temp_max: 286.48 },
-	wind: { speed: 0.96, deg: 285.001 },
-	clouds: { all: 0 },
+	main: {
+		temp: 285.68,
+		humidity: 74,
+		pressure: 1016.8,
+		temp_min: 284.82,
+		temp_max: 286.48
+	},
+	wind: {
+		speed: 0.96,
+		deg: 285.001
+	},
+	clouds: {
+		all: 0
+	},
 	dt: 1427700245,
 	id: 0,
 	name: "Mountain View",

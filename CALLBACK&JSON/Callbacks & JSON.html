@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!-- saved from url=(0132)https://a9870-21000.cluster41.canvas-user-content.com/courses/9870~162/files/9870~21000/course%20files/unit_callbacks/callbacks.html -->
+<html lang="en" dir="ltr">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <title>Callbacks &amp; JSON</title>
+
+</head>
+
+<body cz-shortcut-listen="true" style="">
+
+  <p>Empty HTML doc :) Some JS is running. Save me to your machine.</p>
+
+  <script>
+    function findRandomInResults(results, gender) {
+      for (let i = 0; i < results.length; i++) {
+        if (results[i].gender == gender) {
+          return results[i]
+        }
+      }
+    }
+    getRandomUser = () => {
+      // This function uses AJAX to hit the random user API.
+      // More info: https://randomuser.me
+
+      var request = new XMLHttpRequest();
+      request.open('GET', 'https://randomuser.me/api/?results=500', true);
+      request.onload = function () {
+        /* You'll start here */
+
+
+        console.log(findRandomInResults(JSON.parse(request.response).results, "female"));
+
+      };
+
+      request.send();
+    }
+
+    getRandomUser(); // Execute the function
+  </script>
+
+
+</body>
+
+</html>

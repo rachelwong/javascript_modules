@@ -29,6 +29,18 @@ let index = (req, res) => {
   })
 }
 
+let allEnquiries = (req, res) => {
+  ContactModel.find().then(contacts => {
+    res.render('layouts/main', {
+      view: 'enquiries',
+      title: 'Show All Enquiries',
+      contacts
+    }).catch(err => {
+      res.status(500).send()
+    })
+  })
+}
+
 // create a new contact
 let create = (req, res) => {
   // creates a contact object
@@ -62,5 +74,6 @@ let create = (req, res) => {
 module.exports = {
   newContact,
   create,
-  index
+  index,
+  allEnquiries
 }
