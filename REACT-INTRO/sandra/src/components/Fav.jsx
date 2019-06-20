@@ -15,6 +15,7 @@ const FavRow = props => {
 		return (
 			<div>
 				<h4>{item.header}</h4>
+				<img src={item.imageUrl} />
 				<p>
 					Best time to eat: <span>{item.bestTimeToEat}</span>
 				</p>
