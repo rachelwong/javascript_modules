@@ -1,9 +1,9 @@
 import React from "react"
+import Block from "./Block"
 
-// a functional componetn can accept an object called props which will contain all the attributes we have set in that element
-export function Contact() {
+export function Contact(props) {
 	return (
-		<div>
+		<Block>
 			<h2>Contact Details</h2>
 			<p>
 				<b>Phone:</b> <i>+12345678</i>
@@ -14,6 +14,6 @@ export function Contact() {
 			<p>
 				<b>Twitter:</b> <i>#superfun</i>
 			</p>
-		</div>
+		</Block>
 	)
 }

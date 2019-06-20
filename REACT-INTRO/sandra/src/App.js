@@ -4,8 +4,10 @@ import { About } from "./components/About"
 import { Contact } from "./components/Contact"
 import { Fav } from "./components/Fav"
 import { Header } from "./components/Header"
+import Block from "./components/Block"
 
 function App() {
+	const owner = "Sandra"
 	const interests = [
 		{
 			topic: "Pop",
@@ -55,12 +57,12 @@ function App() {
 	]
 
 	return (
-		<div class='container'>
-			<Header />
+		<Block>
+			<Header owner={owner} />
 			<About interestsData={interests} />
 			<Fav favouritesData={favourites} />
 			<Contact />
-		</div>
+		</Block>
 	)
 }
 
