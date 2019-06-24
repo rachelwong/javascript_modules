@@ -11,7 +11,12 @@ const styles = {
 // This makes a contained card element to contain the children elements in Comment.js
 
 const Card = props => {
-	return <div style={styles}>{props.children}</div>
+	return (
+		<div style={styles}>
+			{props.title}
+			{props.children}
+		</div>
+	)
 }
 
 export default Card
