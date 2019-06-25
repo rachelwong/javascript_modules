@@ -9,10 +9,7 @@ class App extends Component {
 		super(props)
 
 		this.state = {
-			image_url: string,
-			name: string,
-			email: string,
-			phone: string,
+			users: [],
 			loading: false
 		}
 	}

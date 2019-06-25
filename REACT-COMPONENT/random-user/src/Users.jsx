@@ -10,7 +10,7 @@ const Users = ({ users, loading }) => {
 		return (
 			<div>
 				{users.map(user => (
-					<UserItem key={user.id} user={user} />
+					<UserItem key={user.id} user={user.results} /> // it is user.results because the json returns a results object containing arrays
 				))}
 			</div>
 		)
