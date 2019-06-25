@@ -1,31 +1,36 @@
-import React from "react"
+import React, { Component } from "react"
 import "./App.css"
 import axios from "axios"
 import Users from "./Users"
 import { string } from "postcss-selector-parser"
 
-export default function App() {
-  constructor(props){
-    super(props)
+class App extends Component {
+	constructor(props) {
+		super(props)
 
-    this.state = {
-      image_url: string,
-      name: string, 
-      email: string, 
-      phone: string,
-      loading: false
-    }
+		this.state = {
+			image_url: string,
+			name: string,
+			email: string,
+			phone: string,
+			loading: false
+		}
+	}
 
-    async componentDidMount() {
-      this.setState({ loading: true })
-      const response = await axios.get("https://randomuser.me/api/?results=5")
-      this.setState({ users: response.data, loading: false}) 
-    }
-  }
+	// Make HTTP request when mounting the component on DOM
+	async componentDidMount() {
+		this.setState({ loading: true }) // yes it is loading
+		const response = await axios.get("https://randomuser.me/api/?results=5")
+		this.setState({ users: response.data, loading: false }) // not loading anymore with the data sent in
+	}
 
-  return (
-    <div>
-      <Users />
-    </div>
-  )
+	render() {
+		return (
+			<div className='App'>
+				<Users loading={this.state.loading} users={this.state.users} />
+			</div>
+		)
+	}
 }
+
+export default App
