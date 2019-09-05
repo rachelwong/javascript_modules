@@ -1,0 +1,19 @@
+{
+  "name": "react-minimal",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "./node_modules/.bin/opener http://localhost:1234/ && parcel serve index.html",
+    "build": "parcel build index.html",
+    "clean": "echo \"Cleaning project ...\" && rm -Rf dist .cache"
+  },
+  "dependencies": {
+    "react": "latest",
+    "react-dom": "latest",
+    "styled-components": "latest"
+  },
+  "devDependencies": {
+    "opener": "latest"
+  }
+}
